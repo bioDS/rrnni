@@ -1,6 +1,8 @@
 #include <R.h>
 #include <Rinternals.h>
 
-void hello(){
+SEXP hello(){
     Rprintf("Hello World");
+
+    return(R_NilValue);
     }

@@ -28,8 +28,7 @@ rankedPhylo.character = function(x){
 
 
 rankedPhylo.phylo = function(x){
-    # TODO unimplemented
-    stop("Unimplemented")
+    as_ranked(x)
     }
 
 

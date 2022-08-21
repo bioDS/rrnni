@@ -2,14 +2,27 @@
 #'
 #' Create a random ranked phylogeny using the coalescent method.
 #'
-#' Starting from `n` tips of a tree with rank 0, randomly select two tips and
-#' coalesce them, and assign rank 1, in next iteration rank 2 and so on, until
-#' only a single node, the root, remains.
+#' This is implementation of a ranked coalescent algorithm described in Collienne (2021).
+#' Starting from `n` tips of a tree, all with rank 0, randommly select two tips and merge them
+#' into a new node with rank 1, and add the new node to remaining tips. In next iteration, asign
+#' rank 2 and so on, until only a single node, the root, remains.
+#'
+#' @references
+#' \cite{ Collienne, L. (2021). Spaces of Phylogenetic Time Trees (p. 158). University of Otago. }
 #'
 #' @param n the number of tips
-#' @return object of class `rankedPhylo`
+#' @return random ranked tree of class "rankedPhylo"
+#'
+#' @examples
+#' random_tree(5)
+#'
+#' @export
 random_tree = function(n){
     n = as.integer(n[1])
+
+    if(n < 2)
+        stop("Tree must have at least 2 tips")
+
     tips = 1:n
 
     tip_label = paste0("t", 1:n)

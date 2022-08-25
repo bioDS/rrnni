@@ -23,18 +23,18 @@ random_tree = function(n){
     if(n < 2)
         stop("Tree must have at least 2 tips")
 
-    tips = 1:n
+    tips = seq_len(n)
 
-    tip_label = paste0("t", 1:n)
-    edge = matrix(NA, ncol=2, nrow=(2*n-2))
-    edge_length = numeric(2*n-2)
-    rank = numeric(2*n-1)
+    tip_label = paste0("t", tips)
+    edge = matrix(NA_integer_, ncol=2, nrow=(2*n-2))
+    edge_length = integer(2*n-2)
+    rank = integer(2*n-1)
 
     # naive implementation according to Collienne's Algorithm 1
     for(i in seq_len(n - 1)){
         merged = sample(tips, 2)
-        new = 2*n - i
-        idx = c(i*2-1, i*2)
+        new = 2L*n - i
+        idx = c(i*2L-1L, i*2L)
 
         edge[idx, 1] = new
         edge[idx, 2] = merged
@@ -49,7 +49,7 @@ random_tree = function(n){
         list(
             "edge" = edge,
             "tip.label" = tip_label,
-            "Nnode" = n-1,
+            "Nnode" = n-1L,
             "edge.length" = edge_length,
             "rank" = rank
             ),

@@ -10,7 +10,7 @@
 #' function.
 #' If `x` is a character vector, try to read the character as a newick-formatted tree.
 #' If `x` is object of a class `phylo` or `multiPhylo`, coerce these objects into `rankedPhylo`
-#' or `rankedMultiPhylo` using the `as_ranked` function.
+#' or `multiRankedPhylo` using the `as_ranked` function.
 #'
 #' @param x a numeric vector, character vector or a object of class `phylo` or `multiPhylo`, see details.
 #' @return ranked tree or trees of class `rankedPhylo` or `multiRankedPhylo`

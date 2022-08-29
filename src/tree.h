@@ -28,6 +28,11 @@ typedef struct Node {
 /** Tree
  *
  * node.tree is an array of pointers to the Node struct.
+ * These are assumed to be ordered according to their time (rank),
+ * with tips/leaves first (rank0) and then other internal nodes with
+ * rank 1 to root_time.
+ * The tips are assumed to be ordered as well, so that for two different trees,
+ * tips with the same id are considered the same taxon.
  */
 typedef struct Tree {
   Node * tree; // array of nodes with size: 2 * num_leaves - 1
@@ -44,6 +49,12 @@ Tree* copy_tree(Tree* tree);
 
 // create a new tree from an edge matrix
 Tree* new_tree(int tips, int* edges, int* rank);
+
+// sort nodes in tree according to their rank
+void sort_tree(Tree* tree);
+
+// Swap two nodes in tree, changing node IDs
+void swap_nodes(Tree* tree, int i, int j);
 
 // dealocate Tree structure and all nodes.
 void free_tree(Tree* tree);

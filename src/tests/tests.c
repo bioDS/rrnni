@@ -1,6 +1,6 @@
 #include "minunit.h"
 #include "tree.h"
-
+#include "dist.h"
 
 MU_TEST(test_set_parent){
     Node node;
@@ -195,6 +195,64 @@ MU_TEST(test_sort_tree){
 }
 
 
+MU_TEST(test_mrca){
+    Node nodes[] = {
+        {3, {-1, -1}, 0},
+        {4, {-1, -1}, 0},
+        {3, {-1, -1}, 0},
+        {4, {0, 2}, 1},
+        {-1, {1, 3}, 2}
+    };
+    Tree tree = {nodes, 3, 2};
+
+    mu_check(mrca(&tree, 0, 2) == 3);
+    mu_check(mrca(&tree, 0, 1) == 4);
+    mu_check(mrca(&tree, 1, 4) == 4);
+    mu_check(mrca(&tree, 2, 3) == 3);
+}
+
+
+MU_TEST(test_distance){
+    int n_tips = 3;
+    int edges[] = {5, 5, 4, 4, 1, 3, 2, 5};
+    int ranks[] = {0, 0, 0, 2, 1};
+    Tree* tree = new_tree(n_tips, edges, ranks);
+    sort_tree(tree);
+
+    mu_check(distance(tree, tree) == 0);
+    free_tree(tree);
+
+
+    Node xnodes[] = {
+        {5, {-1, -1}, 0},
+        {5, {-1, -1}, 0},
+        {6, {-1, -1}, 0},
+        {7, {-1, -1}, 0},
+        {8, {-1, -1}, 0},
+        {6, {0, 1}, 1},
+        {7, {2, 5}, 2},
+        {8, {3, 6}, 3},
+        {-1, {4, 7}, 4}
+    };
+    Tree xtree = {xnodes, 5, 4};
+
+    Node ynodes[] = {
+        {5, {-1, -1}, 0},
+        {8, {-1, -1}, 0},
+        {6, {-1, -1}, 0},
+        {5, {-1, -1}, 0},
+        {6, {-1, -1}, 0},
+        {7, {0, 3}, 1},
+        {7, {2, 4}, 2},
+        {8, {5, 6}, 3},
+        {-1, {1, 7}, 4},
+    };
+    Tree ytree = {ynodes, 5, 4};
+
+    mu_check(distance(&xtree, &ytree) == 5);
+}
+
+
 MU_TEST_SUITE(test_suite){
     MU_RUN_TEST(test_set_parent);
     MU_RUN_TEST(test_set_children);
@@ -204,6 +262,8 @@ MU_TEST_SUITE(test_suite){
     MU_RUN_TEST(test_copy_tree);
     MU_RUN_TEST(test_swap_nodes);
     MU_RUN_TEST(test_sort_tree);
+    MU_RUN_TEST(test_mrca);
+    MU_RUN_TEST(test_distance);
 }
 
 

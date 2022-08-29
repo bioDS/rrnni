@@ -12,7 +12,7 @@ LIBS =
 
 LD = gcc
 
-tests: tests.c ../tree.c
+tests: tests.c ../tree.c ../dist.c
 + $(LD) $(LDFLAGS) $(INCLUDE) $(LIBS) $^ -o $@
 
 clean:

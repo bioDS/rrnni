@@ -120,12 +120,90 @@ MU_TEST(test_new_tree){
     free_tree(ptree);
 }
 
+
+MU_TEST(test_copy_tree){
+    int n_tips = 3;
+    int edges[] = {5, 5, 4, 4, 1, 3, 2, 5};
+    int ranks[] = {0, 0, 0, 2, 1};
+    Tree* source = new_tree(n_tips, edges, ranks);
+
+    Tree* target = copy_tree(source);
+
+    // same trees
+    mu_check(!compare_tree(source, target));
+
+    // different pointers
+    mu_check(source != target);
+
+    // the tree array is also a different pointer
+    mu_check(&(source->tree) != &(target->tree) );
+
+    // underlying node pointers also differ
+    mu_check(&(source->tree[0]) != &(target->tree[0]));
+
+    // node children pointer also differ
+    mu_check(&(source->tree[0].children) != &(target->tree[0].children));
+
+    free_tree(source);
+    free_tree(target);
+}
+
+
+MU_TEST(test_swap_nodes){
+    Node noriginal[] = {
+        {4, {-1, -1}, 0},
+        {3, {-1, -1}, 0},
+        {4, {-1, -1}, 0},
+        {-1, {1, 4}, 2},
+        {3, {0, 2}, 1}
+    };
+    Tree original = {noriginal, 3, 2};
+    swap_nodes(&original, 3,4);
+
+    Node nswapped[] = {
+        {3, {-1, -1}, 0},
+        {4, {-1, -1}, 0},
+        {3, {-1, -1}, 0},
+        {4, {0, 2}, 1},
+        {-1, {1, 3}, 2}
+    };
+    Tree swapped = {nswapped, 3, 2};
+
+    mu_check(!compare_tree(&original, &swapped));
+
+}
+
+MU_TEST(test_sort_tree){
+    Node nodes[] = {
+        {3, {-1, -1}, 0},
+        {4, {-1, -1}, 0},
+        {3, {-1, -1}, 0},
+        {4, {0, 2}, 1},
+        {-1, {1, 3}, 2}
+    };
+    Tree tree = {nodes, 3, 2};
+
+    int n_tips = 3;
+    int edges[] = {5, 5, 4, 4, 1, 3, 2, 5};
+    int ranks[] = {0, 0, 0, 2, 1};
+    Tree* ptree = new_tree(n_tips, edges, ranks);
+    sort_tree(ptree);
+
+    mu_check(!compare_tree(&tree, ptree));
+
+    free_tree(ptree);
+}
+
+
 MU_TEST_SUITE(test_suite){
     MU_RUN_TEST(test_set_parent);
     MU_RUN_TEST(test_set_children);
     MU_RUN_TEST(test_compare_node);
     MU_RUN_TEST(test_compare_tree);
     MU_RUN_TEST(test_new_tree);
+    MU_RUN_TEST(test_copy_tree);
+    MU_RUN_TEST(test_swap_nodes);
+    MU_RUN_TEST(test_sort_tree);
 }
 
 

@@ -26,18 +26,16 @@ Tree* tree_from_phylo(SEXP phylo){
 
 
 SEXP rnni_distance(SEXP x, SEXP y){
-    PROTECT(x);
-    PROTECT(y);
+    // x and y are the same object
     Tree* xtree = tree_from_phylo(x);
     Tree* ytree = tree_from_phylo(y);
     sort_tree(xtree);
     sort_tree(ytree);
 
-    long dist = distance(xtree, ytree);
+    long dist = 0;
+    dist = distance(xtree, ytree);
     free_tree(xtree);
     free_tree(ytree);
-
-    UNPROTECT(2);
 
     return(ScalarInteger(dist));
 }

@@ -36,11 +36,13 @@ as_ranked = function(x){
         return(x)
 
     ntip = length(x$tip.label)
-    rank = ape::node.depth.edgelength(x)
+    rank = ape::node.depth.edgelength(x) |> as.integer()
     rank = max(rank) - rank
-    rank[-seq_len(ntip)] = order(rank[-seq_len(ntip)])
     x$edge.length = rank[x$edge[,1]] - rank[x$edge[,2]]
     x$rank = rank
-    
+
+    # enforce order of elements
+    x = x[c("edge", "tip.label", "Nnode", "edge.length", "rank")]
+
     structure(x, class = c("rankedPhylo", "phylo"))
     }

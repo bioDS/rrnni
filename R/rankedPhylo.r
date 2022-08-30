@@ -56,8 +56,13 @@ rankedPhylo.numeric = function(x){
 #' @rdname rankedPhylo
 #' @export
 rankedPhylo.character = function(x){
-    # TODO unimplemented
-    stop("Unimplemented")
+    if(length(x) == 1)
+        return(read_newick(x))
+
+    structure(
+        lapply(x, read_newick),
+        class=c("multiRankedPhylo", "multiPhylo")
+        )
     }
 
 

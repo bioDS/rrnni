@@ -3,15 +3,11 @@
 #include <stdlib.h> // for NULL
 #include <R_ext/Rdynload.h>
 
-/* FIXME: 
-   Check these declarations against the C/Fortran source code.
-*/
-
 /* .Call calls */
-extern SEXP hello();
+extern SEXP rnni_distance(SEXP x, SEXP y);
 
 static const R_CallMethodDef CallEntries[] = {
-    {"hello", (DL_FUNC) &hello, 0},
+    {"rnni_distance", (DL_FUNC) &rnni_distance, 2},
     {NULL, NULL, 0}
 };
 

@@ -102,8 +102,10 @@ void change_parent_children(Tree* tree, int i, int j){
 
     // go to parent node, find the i-th node and change it to j-th
     for(int c = 0; c < 2; c++){
-        if(tree->tree[parent].children[c] == i)
+        if(tree->tree[parent].children[c] == i){
             tree->tree[parent].children[c] = j;
+            return; // change only one child
+        }
     }
 }
 

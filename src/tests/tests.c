@@ -173,7 +173,7 @@ MU_TEST(test_swap_nodes){
 
 }
 
-MU_TEST(test_sort_tree){
+MU_TEST(test_sort_tree_1){
     Node nodes[] = {
         {3, {-1, -1}, 0},
         {4, {-1, -1}, 0},
@@ -192,6 +192,38 @@ MU_TEST(test_sort_tree){
     mu_check(!compare_tree(&tree, ptree));
 
     free_tree(ptree);
+}
+
+MU_TEST(test_sort_tree_2){
+    Node xnodes[] = {
+        {7, {-1, -1}, 0},
+        {7, {-1, -1}, 0},
+        {8, {-1, -1}, 0},
+        {8, {-1, -1}, 0},
+        {6, {-1, -1}, 0},
+        {-1, {6, 7}, 4},
+        {5, {8, 4}, 3},
+        {5, {0, 1}, 2},
+        {6, {2, 3}, 1}
+    };
+    Tree xtree = {xnodes, 5, 4};
+    sort_tree(&xtree);
+    
+    Node ynodes[] = {
+        {6, {-1, -1}, 0},
+        {6, {-1, -1}, 0},
+        {5, {-1, -1}, 0},
+        {5, {-1, -1}, 0},
+        {7, {-1, -1}, 0},
+        {7, {2, 3}, 1},
+        {8, {0, 1}, 2},
+        {8, {5, 4}, 3},
+        {-1, {7, 6}, 4}
+    };
+    print_tree(&xtree);
+    Tree ytree = {ynodes, 5, 4};
+
+    mu_check(!compare_tree(&xtree, &ytree));
 }
 
 
@@ -261,7 +293,8 @@ MU_TEST_SUITE(test_suite){
     MU_RUN_TEST(test_new_tree);
     MU_RUN_TEST(test_copy_tree);
     MU_RUN_TEST(test_swap_nodes);
-    MU_RUN_TEST(test_sort_tree);
+    MU_RUN_TEST(test_sort_tree_1);
+    MU_RUN_TEST(test_sort_tree_2);
     MU_RUN_TEST(test_mrca);
     MU_RUN_TEST(test_distance);
 }

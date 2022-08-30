@@ -77,7 +77,7 @@ int rank_move(Tree * input_tree, long rank_in_list){
         input_tree->tree[input_tree->tree[rank_in_list + 1].children[i]].parent = rank_in_list + 1; 
         input_tree->tree[input_tree->tree[rank_in_list].children[i]].parent = rank_in_list;
     }
-    for (int i = 0; i < 2; i ++){
+    for (int i = 0; i < 2; i++){
         // update children of parents of nodes that swap rank
         //first case: nodes that swap ranks share a parent. In this case nothing needs to be changed
         if (input_tree->tree[rank_in_list + 1].parent == input_tree->tree[rank_in_list].parent){

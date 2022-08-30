@@ -220,7 +220,6 @@ MU_TEST(test_sort_tree_2){
         {8, {5, 4}, 3},
         {-1, {7, 6}, 4}
     };
-    print_tree(&xtree);
     Tree ytree = {ynodes, 5, 4};
 
     mu_check(!compare_tree(&xtree, &ytree));

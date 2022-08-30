@@ -39,7 +39,7 @@ If \code{x} is a numeric vector, create \code{n = length(x)} random ranked tree 
 function.
 If \code{x} is a character vector, try to read the character as a newick-formatted tree.
 If \code{x} is object of a class \code{phylo} or \code{multiPhylo}, coerce these objects into \code{rankedPhylo}
-or \code{rankedMultiPhylo} using the \code{as_ranked} function.
+or \code{multiRankedPhylo} using the \code{as_ranked} function.
 }
 \examples{
 

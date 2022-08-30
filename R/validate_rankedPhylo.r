@@ -18,7 +18,7 @@
 #'
 #' @keywords internal
 validate_rankedPhylo = function(x){
-    if(is(x) != "rankedPhylo")
+    if(methods::is(x) != "rankedPhylo")
         stop("x must be of class \"rankedPhylo\"")
 
     if(!inherits(x, "phylo"))

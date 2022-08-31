@@ -36,8 +36,14 @@ as_ranked = function(x){
         return(x)
 
     ntip = length(x$tip.label)
-    rank = ape::node.depth.edgelength(x) |> as.integer()
+    rank = ape::node.depth.edgelength(x)
     rank = max(rank) - rank
+    rank[-c(seq_len(ntip))] = reseq(rank[-c(seq_len(ntip))])
+    rank = as.integer(rank)
+
+    if(any(rank[1:ntip] != 0))
+        stop("First ", ntip, " elements should be tips.")
+
     x$edge.length = rank[x$edge[,1]] - rank[x$edge[,2]]
     x$rank = rank
 
@@ -45,4 +51,9 @@ as_ranked = function(x){
     x = x[c("edge", "tip.label", "Nnode", "edge.length", "rank")]
 
     structure(x, class = c("rankedPhylo", "phylo"))
+    }
+
+
+reseq = function(x){
+    match(x, sort(x))
     }

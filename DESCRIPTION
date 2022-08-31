@@ -1,10 +1,19 @@
 Package: rrnni
-Title: What the Package Does (One Line, Title Case)
+Title: rrnni: Manipulate with RNNI tree space
 Version: 0.0.1
+Date: 2022-08-31
 Authors@R: 
-    person("Jiří", "Moravec", , "jiri.c.moravec@gmail.com", role = c("aut", "cre"),
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: Calculate the RNNI distance.
+    c(person(
+        c("Jiří", "C."), "Moravec", 
+        email = "jiri.c.moravec@gmail.com",
+        role = c("aut", "cre")
+        ),
+    person(
+        "Lena", "Collienne",
+        email = "lena@lenacoll.de",
+        role = c("aut")
+        ))
+Description: Calculate RNNI distance between and manipulate with ranked trees.
 License: GPL (>= 3)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)

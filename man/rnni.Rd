@@ -2,18 +2,34 @@
 % Please edit documentation in R/rnni.r
 \name{rnni}
 \alias{rnni}
-\title{Calculate RNNNI distance}
+\title{Calculate RNNI distance}
 \usage{
-rnni(x, y)
+rnni(x, y, normalize = FALSE)
 }
 \arguments{
 \item{x}{a tree of class "rankedPhylo"}
 
 \item{y}{a tree of class "rankedPhylo"}
+
+\item{normalize}{normalize the distance to the maximum distance of diameter \code{(n-1)(n-2)/2}
+where \code{n} is the number of tips/leaves.}
 }
 \value{
 an integer RNNI distance between \code{x} and \code{y}
 }
 \description{
-Calculate RNNNI distance
+Calculate Ranked Nearest Neighbour Interchange (RNNI) distance.
+}
+\details{
+The RNNI distance is the shortest distance between two trees in the RNNI space, which is defined
+by rank and NNI moves. This space is defined only for ranked trees. Non-ranked ultrametric
+trees can be coerced to ranked trees with \code{as_ranked} or \code{rankedPhylo} functions.
+
+The distance can be normalized to the maximum possible distance, the diameter of the tree-space.
+The diameter is defined as \code{(n-1)(n-2)/2}, where \code{n} is the number of tips/leaves.
+
+The used algorithm implements the TREEPATH algorithm described in Collienne (2021).
+}
+\references{
+\cite{ Collienne, L. (2021). Spaces of Phylogenetic Time Trees. University of Otago. }
 }

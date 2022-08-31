@@ -9,7 +9,7 @@
 #'
 #' @param x an object of class "phylo" or "multiPhylo"
 #' @param all **optional** extract tips for all trees, only if `x` is "multiPhylo"
-#' @param ...arguments to be passed to methods
+#' @param ... arguments to be passed to methods
 #' @return a vector of tip labels, or list of vectors in case of "multiPhylo" with `all=TRUE`
 #'
 #' @examples

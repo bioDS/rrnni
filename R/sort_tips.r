@@ -9,6 +9,9 @@
 #' in the node matrix so that the tips for two different trees of the
 #' same taxa have the same node id.
 #'
+#' @param x a tree of class "phylo" or a collection of trees of class "multiPhylo"
+#' @return an input tree with sorted tips
+#'
 #' @examples
 #' # generate random trees
 #' # use rcoal(5) instead of rankedPhylo(5)
@@ -18,7 +21,7 @@
 #' t2 = ape::rcoal(5) |> rankedPhylo()
 #' t1s = sort_tips(t1)
 #' t2s = sort_tips(t2)
-#' all(tips(t1s) == tips(t2s)
+#' all(tips(t1s) == tips(t2s))
 #'
 #' # for collection of trees:
 #' trees = c(t1, t2)

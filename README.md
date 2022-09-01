@@ -39,6 +39,16 @@ y = rankedPhylo(5)
 rnni(x, y)
 ```
 
-## What is RNNI space?
-### Some useful properties of RNNI space
+## What is RNNI?
 
+RNNI stands for Ranked Nearest Neighbour Interchange and is an extension of the classical NNI to ranked trees, where internal nodes are ordered according to their heights (which we usually assume to be times).
+Note that we assume ultrametric trees, i.e. all leaves have the same time, and a unique order of internal nodes, which means that two non-leaf nodes cannot have the same time.
+The RNNI distance takes the tree topology into account, like standard NNI does, but also penalises changes in the order of internal nodes, i.e. changes in the order of times of evolutionary events.
+
+### More details on the RNNI space
+
+In the RNNI space, we allow two tree rearrangement moves (RNNI moves):
+An NNI move can be performed on any edge connecting nodes of consecutive rank and swaps to neighbouring subtrees (just like standard NNI);
+A rank move swaps the order of two internal nodes of consecutive ranks.
+The distance between two ranked trees in RNNI is then defined as the minimum number of RNNI moves needed to convert one tree into the other.
+This distance can be computed in polynomial time, using the FindPath algorithm described by [Collienne and Gavryushkin (2021)](https://link.springer.com/article/10.1007/s00285-021-01567-5).

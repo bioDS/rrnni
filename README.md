@@ -1,8 +1,8 @@
 # rrnni
 ## Manipulate with RNNI tree space
 
-The **rrnni** package contain a collection of function to create, convert and
-manipulate-with ranked trees. The `rrnni::rnni` function then calculates
+The **rrnni** package contains a collection of functions to create, convert and
+manipulate ranked trees. The `rrnni::rnni` function then calculates
 RNNI distance between two trees in the RNNI space.
 
 ## Install
@@ -24,7 +24,7 @@ library("rrnni")
 tree = rankedPhylo(5)
 ```
 
-Convert an ultrametric tree, such as from `ape::rcoal`, to ranke tree:
+Convert an ultrametric tree, such as from `ape::rcoal`, to ranked tree:
 
 ```{r}
 tree = ape::rcoal(5)

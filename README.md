@@ -52,3 +52,4 @@ An NNI move can be performed on any edge connecting nodes of consecutive rank an
 A rank move swaps the order of two internal nodes of consecutive ranks.
 The distance between two ranked trees in RNNI is then defined as the minimum number of RNNI moves needed to convert one tree into the other.
 This distance can be computed in polynomial time, using the FindPath algorithm described by [Collienne and Gavryushkin (2021)](https://link.springer.com/article/10.1007/s00285-021-01567-5).
+Some further properties of the RNNI space can be found in [Collienne et al (2021)](https://link.springer.com/article/10.1007/s00285-021-01685-0).

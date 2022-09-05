@@ -1,6 +1,15 @@
 #' rrnni: Calculate a distance and a path in RNNI space
 #'
-#' TODO longer description
+#' RNNI stands for Ranked Nearest Neighbour Interchange and is an extension of the classical
+#' NNI space (space of trees created by the NNI moves) to ranked trees, where internal nodes
+#' are ordered according to their heights (usually assumed to be times).
+#' Since ranked trees are variants of time trees, they keep the biologically relevant information
+#' about the timing of events, such as splits.
+#' Note that we assume ultrametric trees, i.e. all leaves have the same time, and unique order
+#' of internal nodes, which means that two non-leaf nodes cannot have the same time.
+#'
+#' The RNNI distance takes the tree topology into account, as standard NNI does, but also penalizes
+#' changes in the order of internal nodes, i.e. changes in the order of times of evolutionary events.
 #'
 #' @references
 #' \cite{

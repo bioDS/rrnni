@@ -81,8 +81,6 @@ The distance between two ranked trees in RNNI is then defined as the minimum num
 This distance can be computed in polynomial time, using the FindPath algorithm described by [Collienne and Gavryushkin (2021)][CollieneGavryushkin2021].
 Some further properties of the RNNI space can be found in [Colliene et al. (2021)][Colliene2021].
 
-
-
 [Gavryushkin2018]: https://doi.org/10.1007/s00285-017-1167-9
 [Colliene2021]: https://doi.org/10.1007/s00285-021-01685-0
 [CollieneGavryushkin2021]: https://doi.org/10.1007/s00285-021-01567-5

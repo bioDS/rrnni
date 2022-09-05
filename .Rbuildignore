@@ -1,3 +1,6 @@
 ^LICENSE\.md$
 TODO\.md$
 src/tests$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$

@@ -13,7 +13,7 @@ Authors@R:
         email = "lena@lenacoll.de",
         role = c("aut")
         ))
-Description: Calculate RNNI distance between and manipulate with ranked trees.
+Description: Calculate RNNI distance between and manipulate with ranked trees. RNNI stands for Ranked Nearest Neighbour Interchange and is an extension of the classical NNI space (space of trees created by the NNI moves) to ranked trees, where internal nodes are ordered according to their heights (usually assumed to be times). The RNNI distance takes the tree topology into account, as standard NNI does, but also penalizes changes in the order of internal nodes, i.e. changes in the order of times of evolutionary events.
 License: GPL (>= 3)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
@@ -24,3 +24,5 @@ Imports:
 Suggests: 
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
+URL: https://biods.github.io/rrnni/, https://github.com/biods/rrnni
+BugReports: https://github.com/biods/rrnni/issues

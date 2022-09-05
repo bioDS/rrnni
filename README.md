@@ -67,7 +67,7 @@ replicate(1000, rnRNNI) |> mean()
 ![](man/figures/ernRNNI.svg)
 
 
-RNNI space has multiple advantages over the NNI space. One advantage is that the ranked moves make the space more "reticulated" or inter-connected. This changes the geometric properties of the space and makes it possible to calculate the shortest path (i.e., distance) between two trees in polynomial time, while calculating distance in NNI space is known to be difficult (non-polynomial, the dreadful "NP-hard") (see [Gavryushkin et al. 2018][Gravryushkin2018] ).
+RNNI space has multiple advantages over the NNI space. One advantage is that the ranked moves make the space more "reticulated" or inter-connected. This changes the geometric properties of the space and makes it possible to calculate the shortest path (i.e., distance) between two trees in polynomial time, while calculating distance in NNI space is known to be difficult (non-polynomial, the dreadful "NP-hard") [Gavryushkin et al. (2018)][Gravryushkin2018].
 
 A more theoretical, yet still biologically relevant, property of the RNNI space is that it has the so-called _cluster_ property, cluster being a group of related taxa. In RNNI space, the shortest path between two trees preserves clusters. This means that in RNNI space, small local changes in tree topology do not have a big impact on the distance. [Colliene et al. (2021)][Colliene2021]
 

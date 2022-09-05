@@ -3,7 +3,7 @@
 #' Read a tree in a newick format and convert it to a rankedPhylo
 #'
 #' @param x a single character string containing tree in a newick format
-#' @return object of calss "rankedPhylo"
+#' @return object of class "rankedPhylo"
 #'
 #' @examples
 #' read_newick("((A:1,B:1):1,C:2);")

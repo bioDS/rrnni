@@ -5,7 +5,7 @@
 #' of related trees to a trees of same size and taxa.
 #'
 #' @param x a collection of trees of class "multiPhylo"
-#' @return intersection of tip labels accross all trees
+#' @return intersection of tip labels across all trees
 #'
 #' @examples
 #' trees = rankedPhylo(3:7)

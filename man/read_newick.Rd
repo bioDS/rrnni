@@ -10,7 +10,7 @@ read_newick(x)
 \item{x}{a single character string containing tree in a newick format}
 }
 \value{
-object of calss "rankedPhylo"
+object of class "rankedPhylo"
 }
 \description{
 Read a tree in a newick format and convert it to a rankedPhylo

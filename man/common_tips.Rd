@@ -10,7 +10,7 @@ common_tips(x)
 \item{x}{a collection of trees of class "multiPhylo"}
 }
 \value{
-intersection of tip labels accross all trees
+intersection of tip labels across all trees
 }
 \description{
 Find shared tip labels of a collection of trees.

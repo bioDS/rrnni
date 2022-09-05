@@ -17,8 +17,8 @@ Create a random ranked phylogeny using the coalescent method.
 }
 \details{
 This is implementation of a ranked coalescent algorithm described in Collienne (2021).
-Starting from \code{n} tips of a tree, all with rank 0, randommly select two tips and merge them
-into a new node with rank 1, and add the new node to remaining tips. In next iteration, asign
+Starting from \code{n} tips of a tree, all with rank 0, randomly select two tips and merge them
+into a new node with rank 1, and add the new node to remaining tips. In next iteration, assign
 rank 2 and so on, until only a single node, the root, remains.
 }
 \examples{

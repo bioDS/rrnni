@@ -7,9 +7,13 @@ RNNI distance between two trees in the RNNI space.
 
 ## Install
 
-**rrnni** is not currently on CRAN.
+To get **rrnni** from CRAN, type:
 
-You can install the latest version of **rrnni** from github:
+```{r}
+install.packages("rrnni")
+```
+
+or can install the latest version of **rrnni** from github:
 
 ```{r}
 devtools::install_github("biods/rrnni")

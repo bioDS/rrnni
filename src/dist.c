@@ -3,6 +3,15 @@
 #include "dist.h"
 
 
+// translate error code to error string
+const char* dist_error_str(dist_error_e code){
+    if( code < 0 || code >= DIST_ERROR_COUNT)
+        return(DIST_ERROR_STRS[DIST_ERROR_WRONG]);
+
+    return(DIST_ERROR_STRS[code]);
+}
+
+
 // find mrca of nodes with positions node1 and node2 in tree
 // returns the rank of the mrca
 long mrca(Tree* input_tree, long node1, long node2){
@@ -22,13 +31,11 @@ long mrca(Tree* input_tree, long node1, long node2){
 // NNI move on edge bounded by rank rank_in_list and rank_in_list + 1, moving child_stays (index) of the lower node up
 int nni_move(Tree* input_tree, long rank_in_list, int child_moves_up){
     if (input_tree->tree == NULL){
-        printf("Error. No RNNI move possible. Given tree doesn't exist.\n");
-        return 0;
+        return(-DIST_ERROR_NOTREE);
     }
 
     if(input_tree->tree[rank_in_list].parent != rank_in_list + 1){
-        printf("Can't do an NNI - interval [%ld, %ld] is not an edge!\n", rank_in_list, rank_in_list + 1);
-        return 1;
+        return(-DIST_ERROR_NOMOVE);
     }
 
     int child_moved_up;
@@ -52,14 +59,13 @@ int nni_move(Tree* input_tree, long rank_in_list, int child_moves_up){
 // Make a rank move on tree between nodes of rank rank and rank + 1 (if possible)
 int rank_move(Tree * input_tree, long rank_in_list){
     if (input_tree->tree == NULL){
-        printf("Error. No rank move possible. Given tree doesn't exist.\n");
-        return 1;
+        return(-DIST_ERROR_NOTREE);
     }
+
     if (input_tree->tree[rank_in_list].parent == rank_in_list + 1){
-/*        printf("Error. No rank move possible on tree %s. The interval [%ld,%ld] is an edge!\n", tree_to_string(input_tree), rank_in_list, rank_in_list + 1);*/
-        printf("Error. No rank move possible on tree. The interval [%ld,%ld] is an edge!\n", rank_in_list, rank_in_list + 1);
-        return 0;
+        return(-DIST_ERROR_NOMOVE);
     }
+
     // update parents of nodes that swap ranks
     long upper_parent;
     upper_parent = input_tree->tree[rank_in_list + 1].parent;
@@ -104,10 +110,14 @@ int decrease_mrca(Tree* tree, long node1, long node2){
 
     Tree* neighbour = copy_tree(tree);
 
+    int err = -DIST_ERROR_WRONG;
     int move_type;
     if (neighbour->tree[current_mrca-1].parent == current_mrca){ // edge -> NNI move
         // we try both possible NNI moves and see which one decreases the rank of the mrca
-        nni_move(neighbour, current_mrca-1, 0);
+        err = nni_move(neighbour, current_mrca-1, 0);
+        if(err < 0)
+            goto error;
+        
         move_type = 1;
         if(mrca(neighbour,node1,node2)>=current_mrca){
             // we did not decrease the rank of the mrca by this nni move,
@@ -116,11 +126,18 @@ int decrease_mrca(Tree* tree, long node1, long node2){
             for (long i = 0; i < 2 * num_leaves - 1; i++){
                 neighbour->tree[i] = tree->tree[i];
             }
-            nni_move(neighbour, current_mrca-1, 1);
+
+            err = nni_move(neighbour, current_mrca-1, 1);
+            if(err > 0)
+                goto error;
+
             move_type = 2;
         }
     } else{ // otherwise, we make a rank move
-        rank_move(neighbour, current_mrca - 1);
+        err = rank_move(neighbour, current_mrca - 1);
+        if(err < 0)
+            goto error;
+
         move_type = 0;
     }
     // now update tree to become neighbour
@@ -130,23 +147,26 @@ int decrease_mrca(Tree* tree, long node1, long node2){
     free_tree(neighbour);
 
     return(move_type);
+    
+error:
+    free_tree(neighbour);
+    return(err);
 }
 
 
 // Move up internal nodes that are at position >i in node list so that there are no nodes with rank less than k in the tree at the end (i.e. length moves that move nodes up -- see pseudocode FindPath_matrix^+)
 int move_up(Tree * itree, long i, long k){
     if (itree->tree == NULL){
-        printf("Error. No moves possible. Given tree doesn't exist.\n");
-        return 0;
+        return(-DIST_ERROR_NOTREE);
     }
 
     long num_moves = 0; // counter for the number of moves that are necessary
     long j = i;
     // Find the highest j that needs to be moved up -- maximum is reached at root!
     while (itree->tree[j+1].time <= k && j+1 <=2*itree->num_leaves-2){
-        j ++;
+        j++;
     }
-    // printf("j after first loop: %ld\n", j);
+
     long num_moving_nodes = j - i; // number of nodes that will need to be moved
     // it might happen that we need to move nodes with times above k up, if there is not enough space for the other nodes that are supposed to move up.
     // Find the uppermost node that needs to move up
@@ -154,30 +174,24 @@ int move_up(Tree * itree, long i, long k){
         j++;
         num_moving_nodes++;
     }
+
     for (long index = i; index <= j; index++){ // Do all required length moves
-        // printf("index: %ld\n", index);
         num_moves += k+index-i - itree->tree[index].time;
         itree->tree[index].time = k+index-i;
     }
+
     return num_moves;
 }
 
 
 // Distance between two trees using the FINDPATH algorithm
 long distance(Tree* start_tree, Tree* dest_tree){
-    if (start_tree->tree == NULL){
-        printf("Error: Start tree doesn't exist.\n");
-        return(-1);
-    }
-
-    if (dest_tree->tree == NULL){
-        printf("Error: Destination tree doesn't exist.\n");
-        return(-1); 
+    if (start_tree->tree == NULL || dest_tree->tree == NULL){
+        return(-DIST_ERROR_NOTREE);
     }
 
     if(start_tree->num_leaves != dest_tree->num_leaves){
-        printf("Error: Trees have different number of leaves.\n");
-        return(-1);
+        return(-DIST_ERROR_DIFFSIZE);
     }
 
     Tree* current_tree = copy_tree(start_tree);
@@ -185,10 +199,15 @@ long distance(Tree* start_tree, Tree* dest_tree){
     long current_mrca; //rank of the mrca that needs to be moved down
     int n_tips = current_tree->num_leaves;
     int n_nodes = 2 * n_tips - 1;
+    int err = -DIST_ERROR_WRONG;
     for (int i = n_tips; i < n_nodes; i++){
         // we might need to move nodes below the time of node i in dest_tree up in the current tree
         if (current_tree->tree[i].time < dest_tree->tree[i].time){
-            path_index += move_up(current_tree, i, dest_tree->tree[i].time);
+            int move = move_up(current_tree, i, dest_tree->tree[i].time);
+            if(move < 0)
+                goto error;
+
+            path_index += move;
         }
 
         // we now need to find the current MRCA and decrease its time in the tree
@@ -225,17 +244,24 @@ long distance(Tree* start_tree, Tree* dest_tree){
                 }
             }
             // Now do RNNI moves
-            decrease_mrca(
+            err = decrease_mrca(
                 current_tree,
                 dest_tree->tree[i].children[0],
                 dest_tree->tree[i].children[1]
             );
+            if(err < 0)
+                goto error;
+
             current_mrca--;
             path_index++;
         }
     }
     free_tree(current_tree);
     return(path_index);
+
+error:
+    free_tree(current_tree);
+    return(err);
 }
 
 

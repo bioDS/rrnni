@@ -37,5 +37,10 @@ SEXP rnni_distance(SEXP x, SEXP y){
     free_tree(xtree);
     free_tree(ytree);
 
+    // check for error
+    if(dist < 0){
+        error("%s\n", dist_error_str(-dist));
+    }
+
     return(ScalarInteger(dist));
 }

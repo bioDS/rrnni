@@ -6,6 +6,36 @@
 #define DIST_H
 
 #include "tree.h"
+
+
+// Code checking interface from: https://stackoverflow.com/a/59221452/4868692
+
+// Error codes for distance functions
+typedef enum dist_error_e {
+    DIST_ERROR_OK = 0,
+    // when wrong error value is thrown
+    DIST_ERROR_WRONG,
+    DIST_ERROR_NOTREE,
+    DIST_ERROR_DIFFSIZE,
+    DIST_ERROR_NOMOVE,
+
+    // total error count
+    DIST_ERROR_COUNT,
+} dist_error_e;
+
+
+// Error messages
+static const char* const DIST_ERROR_STRS[DIST_ERROR_COUNT] = {
+    "No error occured.",
+    "ERROR: An error occured, but incorrect error value was specified!",
+    "ERROR: Input tree doesn't exist!",
+    "ERROR: Input trees are of different size!",
+    "ERROR: Cannot perform RNNI move!",
+};
+
+// code to message:
+const char* dist_error_str(dist_error_e code);
+
 // all functions assume that the nodes in tree are sorted according to their rank
 
 // get RNNI distance between two trees

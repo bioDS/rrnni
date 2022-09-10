@@ -2,6 +2,7 @@
 #include "tree.h"
 #include "dist.h"
 
+/* Use only during debugging
 SEXP hello_tree(SEXP phylo){
     PROTECT(phylo);
     Tree* tree = tree_from_phylo(phylo);
@@ -11,7 +12,7 @@ SEXP hello_tree(SEXP phylo){
 
     return(R_NilValue);
     }
-
+*/
 
 Tree* tree_from_phylo(SEXP phylo){
     // derive edges, n and rank from phylo

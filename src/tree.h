@@ -59,9 +59,6 @@ void swap_nodes(Tree* tree, int i, int j);
 // dealocate Tree structure and all nodes.
 void free_tree(Tree* tree);
 
-// print tree
-void print_tree(Tree* tree);
-
 // compare two trees, return 0 if trees are the same, 1 otherwise
 int compare_tree(Tree* x, Tree* y);
 

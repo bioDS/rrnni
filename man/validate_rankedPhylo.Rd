@@ -23,9 +23,4 @@ of the represented ranked tree.
 \code{validate_rankedPhylo} checks these restrictions and throw a particular error, if the object
 fails any of these restrictions.
 }
-\examples{
-tree = rankedPhylo(5)
-rrnni:::validate_rankedPhylo(tree)
-
-}
 \keyword{internal}

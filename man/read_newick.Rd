@@ -19,7 +19,8 @@ Read a tree in a newick format and convert it to a rankedPhylo
 read_newick("((A:1,B:1):1,C:2);")
 
 # Note, not all valid newick trees are valid ranked trees
-# This would fail
-# read_newick("((A,B),C);")
+\dontrun{
+read_newick("((A,B),C);") 
+}
 
 }

@@ -12,11 +12,12 @@
 #' @param x an object of class "rankedPhylo"
 #' @return This function doesn't have a return value.
 #'
-#' @examples
-#' tree = rankedPhylo(5)
-#' rrnni:::validate_rankedPhylo(tree)
-#'
 #' @keywords internal
+#
+# @examples
+# tree = rankedPhylo(5)
+# rrnni:::validate_rankedPhylo(tree)
+#
 validate_rankedPhylo = function(x){
     if(methods::is(x) != "rankedPhylo")
         stop("x must be of class \"rankedPhylo\"")

@@ -18,10 +18,4 @@ x without values
 Remove one or more values from a vector.
 This is a shorthand for \code{x[!x \%in\% values]}
 }
-\examples{
-x = c(1:4)
-y = rrnni:::rmv(x, c(1,3))
-y # 2, 4
-
-}
 \keyword{internal}

@@ -9,7 +9,7 @@ rmv(x, values)
 \arguments{
 \item{x}{a vector}
 
-\item{values}{vector of value}
+\item{values}{vector of values}
 }
 \value{
 x without values

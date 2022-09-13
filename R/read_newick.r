@@ -9,9 +9,7 @@
 #' read_newick("((A:1,B:1):1,C:2);")
 #'
 #' # Note, not all valid newick trees are valid ranked trees
-#' \dontrun{
-#' read_newick("((A,B),C);") 
-#' }
+#' try( read_newick("((A,B),C);") ) 
 #'
 #' @export
 read_newick = function(x){

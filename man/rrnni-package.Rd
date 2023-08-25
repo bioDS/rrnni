@@ -38,8 +38,7 @@ Journal of Mathematical Biology, 82(1-2):8.
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://biods.github.io/rrnni/}
-  \item \url{https://github.com/biods/rrnni}
+  \item \url{https://rrnni.biods.org/}
   \item Report bugs at \url{https://github.com/biods/rrnni/issues}
 }
 

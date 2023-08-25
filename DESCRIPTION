@@ -1,7 +1,7 @@
 Package: rrnni
 Title: Manipulate with RNNI Tree Space
-Version: 0.1.0
-Date: 2022-08-31
+Version: 0.1.1
+Date: 2023-08-26
 Authors@R: 
     c(person(
         c("Jiří", "C."), "Moravec", 
@@ -24,5 +24,5 @@ Imports:
 Suggests: 
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
-URL: https://biods.github.io/rrnni/, https://github.com/biods/rrnni
+URL: https://rrnni.biods.org/
 BugReports: https://github.com/biods/rrnni/issues

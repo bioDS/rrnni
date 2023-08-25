@@ -73,7 +73,7 @@ replicate(1000, rnRNNI) |> mean()
 
 RNNI space has multiple advantages over the NNI space. One advantage is that the ranked moves make the space more "reticulated" or inter-connected. This changes the geometric properties of the space and makes it possible to calculate the shortest path (i.e., distance) between two trees in polynomial time, while calculating distance in NNI space is known to be difficult (non-polynomial, the dreadful "NP-hard") [Gavryushkin et al. (2018)][Gavryushkin2018].
 
-A more theoretical, yet still biologically relevant, property of the RNNI space is that it has the so-called _cluster_ property, cluster being a group of related taxa. In RNNI space, the shortest path between two trees preserves clusters. This means that in RNNI space, small local changes in tree topology do not have a big impact on the distance. [Colliene et al. (2021)][Colliene2021]
+A more theoretical, yet still biologically relevant, property of the RNNI space is that it has the so-called _cluster_ property, cluster being a group of related taxa. In RNNI space, the shortest path between two trees preserves clusters. This means that in RNNI space, small local changes in tree topology do not have a big impact on the distance. [Collienne et al. (2021)][Collienne2021]
 
 
 ### More details on the RNNI space
@@ -82,9 +82,9 @@ In the RNNI space, we allow two tree rearrangement moves (RNNI moves):
 An NNI move can be performed on any edge connecting nodes of consecutive rank and swaps to neighbouring subtrees (just like standard NNI);
 A rank move swaps the order of two internal nodes of consecutive ranks.
 The distance between two ranked trees in RNNI is then defined as the minimum number of RNNI moves needed to convert one tree into the other.
-This distance can be computed in polynomial time, using the FindPath algorithm described by [Collienne and Gavryushkin (2021)][CollieneGavryushkin2021].
-Some further properties of the RNNI space can be found in [Colliene et al. (2021)][Colliene2021].
+This distance can be computed in polynomial time, using the FindPath algorithm described by [Collienne and Gavryushkin (2021)][CollienneGavryushkin2021].
+Some further properties of the RNNI space can be found in [Collienne et al. (2021)][Collienne2021].
 
 [Gavryushkin2018]: https://doi.org/10.1007/s00285-017-1167-9
-[Colliene2021]: https://doi.org/10.1007/s00285-021-01685-0
-[CollieneGavryushkin2021]: https://doi.org/10.1007/s00285-021-01567-5
+[Collienne2021]: https://doi.org/10.1007/s00285-021-01685-0
+[CollienneGavryushkin2021]: https://doi.org/10.1007/s00285-021-01567-5

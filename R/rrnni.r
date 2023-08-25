@@ -29,6 +29,6 @@
 #' \cite{ Collienne, L. (2021). Spaces of Phylogenetic Time Trees. University of Otago. }
 #'
 #' @docType package
-#' @name rrnni
+#' @keywords internal
 #' @useDynLib rrnni, .registration=TRUE, .fixes="C_"
-NULL
+"_PACKAGE"

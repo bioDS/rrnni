@@ -17,7 +17,7 @@ Description: Calculate RNNI distance between and manipulate with ranked trees. R
 License: GPL (>= 3)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.1
+RoxygenNote: 7.2.3
 Imports:
     methods,
     ape
